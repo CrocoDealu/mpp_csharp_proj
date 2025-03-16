@@ -18,4 +18,9 @@ public class Ticket: Entity<int>
         NoOfSeats = noOfSeats;
         Price = price;
     }
+
+    public override string ToString()
+    {
+        return $"id = {Id}, game = {Game.Id}, customer name = {CustomerName}, customer address = {CustomerAddress}, seller = {Seller.Id}, no of seats = {NoOfSeats}, price = {Price}";
+    }
 }

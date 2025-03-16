@@ -12,4 +12,9 @@ public class Cashier: Entity<int>
         Username = username;
         Password = password;
     }
+
+    public override string ToString()
+    {
+        return $"id = {Id}, name = {Name}, username = {Username}, password = {Password}";
+    }
 }

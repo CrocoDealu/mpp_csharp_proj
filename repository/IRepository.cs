@@ -8,7 +8,7 @@ public interface IRepository<TId, TEntity> where TEntity : Entity<TId>
      * Retrieve all records from the repository.
      * @return a list of all records.
      */
-    List<TEntity> FindAll();
+    IEnumerable<TEntity> FindAll();
 
     /**
      * Retrieve a record by its unique identifier.

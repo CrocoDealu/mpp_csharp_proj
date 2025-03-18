@@ -1,8 +1,10 @@
 using System.Data;
+using System.Reflection;
 using ConsoleApp1.model;
 using ConsoleApp1.utils;
+using log4net;
 using Microsoft.Data.Sqlite;
-using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Configuration;
 
 namespace ConsoleApp1.repository;
 
@@ -10,22 +12,16 @@ public class CashierDBRepository: ICashierRepository
 {
     
     private DbUtils _dbUtils;
-    private readonly ILogger<CashierDBRepository> _logger;
+    private static readonly ILog _logger = LogManager.GetLogger(MethodBase.GetCurrentMethod()?.DeclaringType);
 
-    public CashierDBRepository(DbUtils dbUtils)
+    public CashierDBRepository(DbUtils dbUtils, IConfigurationRoot configuration)
     {
         _dbUtils = dbUtils;
-        using var loggerFactory = LoggerFactory.Create(builder =>
-        {
-            builder.AddConsole();
-            builder.SetMinimumLevel(LogLevel.Debug);
-        });
-        _logger = loggerFactory.CreateLogger<CashierDBRepository>();
     }
 
     public IEnumerable<Cashier> FindAll()
     {
-        _logger.LogInformation("Attempting to retrieve all cashiers");
+        _logger.Info("Attempting to retrieve all cashiers");
         var connection = _dbUtils.GetConnection();
         var cashiers = new List<Cashier>();
         try
@@ -43,16 +39,16 @@ public class CashierDBRepository: ICashierRepository
         }
         catch (Exception ex)
         {
-            _logger.LogInformation($"An exception occurred while retrieving all cashiers: {ex.Message}");
+            _logger.Error($"An exception occurred while retrieving all cashiers: {ex.Message}");
             throw new InvalidOperationException("An exception occurred while retrieving all cashiers", ex);
         }
-        _logger.LogInformation("Successfully retrieved all cashiers");
+        _logger.Info("Successfully retrieved all cashiers");
         return cashiers;
     }
 
     public Cashier? FindById(int id)
     {
-        _logger.LogInformation("Attempting to find cashier with ID {id}", id);
+        _logger.Info($"Attempting to find cashier with ID {id}");
         var connection = _dbUtils.GetConnection();
         Cashier? cashier = null;
         try
@@ -71,7 +67,7 @@ public class CashierDBRepository: ICashierRepository
         }
         catch (Exception ex)
         {
-            _logger.LogInformation($"An exception occurred while retrieving cashier with id {id}: {ex.Message}");
+            _logger.Error($"An exception occurred while retrieving cashier with id {id}: {ex.Message}");
             throw new InvalidOperationException("An exception occurred while retrieving cashier", ex);
         }
         return cashier;
@@ -79,7 +75,7 @@ public class CashierDBRepository: ICashierRepository
 
     public Cashier? Save(Cashier entity)
     {
-        _logger.LogInformation("Attempting to save cashier");
+        _logger.Info("Attempting to save cashier");
         var connection = _dbUtils.GetConnection();
         try
         {
@@ -98,7 +94,7 @@ public class CashierDBRepository: ICashierRepository
         }
         catch (Exception ex)
         {
-            _logger.LogInformation($"An exception occurred while adding cashier: {ex.Message}");
+            _logger.Error($"An exception occurred while adding cashier: {ex.Message}");
             throw new InvalidOperationException("An exception occurred while retrieving cashier", ex);
         }
         return entity;
@@ -109,10 +105,10 @@ public class CashierDBRepository: ICashierRepository
         Cashier? cashier = FindById(id);
         if (cashier == null)
         {
-            _logger.LogInformation("No cashier with ID {id}", id);
+            _logger.Error($"No cashier with ID {id}");
             throw new InvalidOperationException("No cashier with ID {id}");
         }
-        _logger.LogInformation("Attempting to delete cashier with id: {id}", id);
+        _logger.Info($"Attempting to delete cashier with id: {id}");
         var connection = _dbUtils.GetConnection();
         try
         {
@@ -126,7 +122,7 @@ public class CashierDBRepository: ICashierRepository
         }
         catch (Exception ex)
         {
-            _logger.LogInformation($"An exception occurred while adding cashier: {ex.Message}");
+            _logger.Error($"An exception occurred while adding cashier: {ex.Message}");
             throw new InvalidOperationException("An exception occurred while retrieving cashier", ex);
         }
         return cashier;
@@ -134,7 +130,7 @@ public class CashierDBRepository: ICashierRepository
 
     public Cashier? Update(Cashier entity)
     {
-        _logger.LogInformation("Attempting to update cashier with id: :{id}", entity.Id);
+        _logger.Info($"Attempting to update cashier with id: :{entity.Id}");
         
         var connection = _dbUtils.GetConnection();
         try
@@ -152,7 +148,7 @@ public class CashierDBRepository: ICashierRepository
         }
         catch (Exception ex)
         {
-            _logger.LogInformation($"An exception occurred while updating cashier with id: {entity.Id}: {ex.Message}");
+            _logger.Error($"An exception occurred while updating cashier with id: {entity.Id}: {ex.Message}");
             throw new InvalidOperationException("An exception occurred while updating cashier", ex);
         }
     }

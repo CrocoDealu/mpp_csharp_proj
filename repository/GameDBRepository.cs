@@ -1,30 +1,25 @@
 using System.Data;
+using System.Reflection;
 using ConsoleApp1.model;
 using ConsoleApp1.utils;
+using log4net;
 using Microsoft.Data.Sqlite;
-using Microsoft.Extensions.Logging;
 
 namespace ConsoleApp1.repository;
 
 public class GameDBRepository : IGameRepository
 {
     private readonly DbUtils _dbUtils;
-    private readonly ILogger<GameDBRepository> _logger;
+    private static readonly ILog _logger = LogManager.GetLogger(MethodBase.GetCurrentMethod()?.DeclaringType);
 
     public GameDBRepository(DbUtils dbUtils)
     {
         _dbUtils = dbUtils;
-        using var loggerFactory = LoggerFactory.Create(builder =>
-        {
-            builder.AddConsole();
-            builder.SetMinimumLevel(LogLevel.Debug);
-        });
-        _logger = loggerFactory.CreateLogger<GameDBRepository>();
     }
 
     public IEnumerable<Game> FindAll()
     {
-        _logger.LogInformation("Attempting to retrieve all games");
+        _logger.Info("Attempting to retrieve all games");
         var connection = _dbUtils.GetConnection();
         var games = new List<Game>();
         try
@@ -42,16 +37,16 @@ public class GameDBRepository : IGameRepository
         }
         catch (Exception ex)
         {
-            _logger.LogError($"An exception occurred while retrieving all games: {ex.Message}");
+            _logger.Error($"An exception occurred while retrieving all games: {ex.Message}");
             throw new InvalidOperationException("An exception occurred while retrieving all games", ex);
         }
-        _logger.LogInformation("Successfully retrieved all games");
+        _logger.Info("Successfully retrieved all games");
         return games;
     }
 
     public Game? FindById(int id)
     {
-        _logger.LogInformation("Attempting to find game with ID {id}", id);
+        _logger.Info($"Attempting to find game with ID {id}");
         var connection = _dbUtils.GetConnection();
         Game? game = null;
         try
@@ -69,7 +64,7 @@ public class GameDBRepository : IGameRepository
         }
         catch (Exception ex)
         {
-            _logger.LogError($"An exception occurred while retrieving game with id {id}: {ex.Message}");
+            _logger.Error($"An exception occurred while retrieving game with id {id}: {ex.Message}");
             throw new InvalidOperationException("An exception occurred while retrieving the game", ex);
         }
         return game;
@@ -77,7 +72,7 @@ public class GameDBRepository : IGameRepository
 
     public Game Save(Game entity)
     {
-        _logger.LogInformation("Attempting to save game");
+        _logger.Info("Attempting to save game");
         var connection = _dbUtils.GetConnection();
         try
         {
@@ -100,7 +95,7 @@ public class GameDBRepository : IGameRepository
         }
         catch (Exception ex)
         {
-            _logger.LogError($"An exception occurred while saving game: {ex.Message}");
+            _logger.Error($"An exception occurred while saving game: {ex.Message}");
             throw new InvalidOperationException("An exception occurred while saving the game", ex);
         }
         return entity;
@@ -111,10 +106,10 @@ public class GameDBRepository : IGameRepository
         Game? game = FindById(id);
         if (game == null)
         {
-            _logger.LogInformation("No game found with ID {id}", id);
+            _logger.Info($"No game found with ID {id}");
             throw new InvalidOperationException($"No game found with ID {id}");
         }
-        _logger.LogInformation("Attempting to delete game with ID {id}", id);
+        _logger.Info($"Attempting to delete game with ID {id}");
         var connection = _dbUtils.GetConnection();
         try
         {
@@ -127,7 +122,7 @@ public class GameDBRepository : IGameRepository
         }
         catch (Exception ex)
         {
-            _logger.LogError($"An exception occurred while deleting game with id {id}: {ex.Message}");
+            _logger.Error($"An exception occurred while deleting game with id {id}: {ex.Message}");
             throw new InvalidOperationException("An exception occurred while deleting the game", ex);
         }
         return game;
@@ -135,7 +130,7 @@ public class GameDBRepository : IGameRepository
 
     public Game Update(Game entity)
     {
-        _logger.LogInformation("Attempting to update game with ID {id}", entity.Id);
+        _logger.Info($"Attempting to update game with ID {entity.Id}");
         var connection = _dbUtils.GetConnection();
         try
         {
@@ -158,7 +153,7 @@ public class GameDBRepository : IGameRepository
         }
         catch (Exception ex)
         {
-            _logger.LogError($"An exception occurred while updating game with id {entity.Id}: {ex.Message}");
+            _logger.Error($"An exception occurred while updating game with id {entity.Id}: {ex.Message}");
             throw new InvalidOperationException("An exception occurred while updating the game", ex);
         }
     }

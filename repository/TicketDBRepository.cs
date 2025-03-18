@@ -1,17 +1,18 @@
 using System.Data;
+using System.Reflection;
 using System.Text;
 using ConsoleApp1.dto;
 using ConsoleApp1.model;
 using ConsoleApp1.utils;
+using log4net;
 using Microsoft.Data.Sqlite;
-using Microsoft.Extensions.Logging;
 
 namespace ConsoleApp1.repository;
 
 public class TicketDBRepository : ITicketRepository
 {
     private readonly DbUtils _dbUtils;
-    private readonly ILogger<TicketDBRepository> _logger;
+    private static readonly ILog _logger = LogManager.GetLogger(MethodBase.GetCurrentMethod()?.DeclaringType);
     private readonly IGameRepository _gameRepository;
     private readonly ICashierRepository _cashierRepository;
 
@@ -20,18 +21,11 @@ public class TicketDBRepository : ITicketRepository
         _dbUtils = dbUtils;
         _gameRepository = gameRepository;
         _cashierRepository = cashierRepository;
-
-        using var loggerFactory = LoggerFactory.Create(builder =>
-        {
-            builder.AddConsole();
-            builder.SetMinimumLevel(LogLevel.Debug);
-        });
-        _logger = loggerFactory.CreateLogger<TicketDBRepository>();
     }
 
     public Ticket? FindById(int id)
     {
-        _logger.LogInformation("Attempting to find ticket with ID {id}", id);
+        _logger.Info($"Attempting to find ticket with ID {id}");
         var connection = _dbUtils.GetConnection();
         Ticket? ticket = null;
         try
@@ -49,7 +43,7 @@ public class TicketDBRepository : ITicketRepository
         }
         catch (Exception ex)
         {
-            _logger.LogError($"An exception occurred while retrieving ticket with id {id}: {ex.Message}");
+            _logger.Error($"An exception occurred while retrieving ticket with id {id}: {ex.Message}");
             throw new InvalidOperationException("An exception occurred while retrieving the ticket", ex);
         }
         return ticket;
@@ -57,7 +51,7 @@ public class TicketDBRepository : ITicketRepository
 
     public IEnumerable<Ticket> FindAll()
     {
-        _logger.LogInformation("Attempting to retrieve all tickets");
+        _logger.Info("Attempting to retrieve all tickets");
         var connection = _dbUtils.GetConnection();
         var tickets = new List<Ticket>();
         try
@@ -75,16 +69,16 @@ public class TicketDBRepository : ITicketRepository
         }
         catch (Exception ex)
         {
-            _logger.LogError($"An exception occurred while retrieving all tickets: {ex.Message}");
+            _logger.Error($"An exception occurred while retrieving all tickets: {ex.Message}");
             throw new InvalidOperationException("An exception occurred while retrieving all tickets", ex);
         }
-        _logger.LogInformation("Successfully retrieved all tickets");
+        _logger.Info("Successfully retrieved all tickets");
         return tickets;
     }
 
     public Ticket Save(Ticket entity)
     {
-        _logger.LogInformation("Attempting to save ticket");
+        _logger.Info("Attempting to save ticket");
         var connection = _dbUtils.GetConnection();
         try
         {
@@ -106,7 +100,7 @@ public class TicketDBRepository : ITicketRepository
         }
         catch (Exception ex)
         {
-            _logger.LogError($"An exception occurred while saving ticket: {ex.Message}");
+            _logger.Error($"An exception occurred while saving ticket: {ex.Message}");
             throw new InvalidOperationException("An exception occurred while saving the ticket", ex);
         }
         return entity;
@@ -117,10 +111,10 @@ public class TicketDBRepository : ITicketRepository
         Ticket? ticket = FindById(id);
         if (ticket == null)
         {
-            _logger.LogInformation("No ticket found with ID {id}", id);
+            _logger.Info($"No ticket found with ID {id}");
             throw new InvalidOperationException($"No ticket found with ID {id}");
         }
-        _logger.LogInformation("Attempting to delete ticket with ID {id}", id);
+        _logger.Info($"Attempting to delete ticket with ID {id}");
         var connection = _dbUtils.GetConnection();
         try
         {
@@ -133,7 +127,7 @@ public class TicketDBRepository : ITicketRepository
         }
         catch (Exception ex)
         {
-            _logger.LogError($"An exception occurred while deleting ticket with id {id}: {ex.Message}");
+            _logger.Error($"An exception occurred while deleting ticket with id {id}: {ex.Message}");
             throw new InvalidOperationException("An exception occurred while deleting the ticket", ex);
         }
         return ticket;
@@ -141,7 +135,7 @@ public class TicketDBRepository : ITicketRepository
 
     public Ticket Update(Ticket entity)
     {
-        _logger.LogInformation("Attempting to update ticket with ID {id}", entity.Id);
+        _logger.Info($"Attempting to update ticket with ID {entity.Id}");
         var connection = _dbUtils.GetConnection();
         try
         {
@@ -163,14 +157,14 @@ public class TicketDBRepository : ITicketRepository
         }
         catch (Exception ex)
         {
-            _logger.LogError($"An exception occurred while updating ticket with id {entity.Id}: {ex.Message}");
+            _logger.Error($"An exception occurred while updating ticket with id {entity.Id}: {ex.Message}");
             throw new InvalidOperationException("An exception occurred while updating the ticket", ex);
         }
     }
 
     public IEnumerable<Ticket> GetTicketsSoldForGame(Game game)
     {
-        _logger.LogInformation("Attempting to retrieve tickets sold for game with ID {gameId}", game.Id);
+        _logger.Info($"Attempting to retrieve tickets sold for game with ID {game.Id}");
         var connection = _dbUtils.GetConnection();
         var tickets = new List<Ticket>();
         try
@@ -189,16 +183,16 @@ public class TicketDBRepository : ITicketRepository
         }
         catch (Exception ex)
         {
-            _logger.LogError($"An exception occurred while retrieving tickets for game with id {game.Id}: {ex.Message}");
+            _logger.Error($"An exception occurred while retrieving tickets for game with id {game.Id}: {ex.Message}");
             throw new InvalidOperationException("An exception occurred while retrieving tickets for the game", ex);
         }
-        _logger.LogInformation("Successfully retrieved tickets for game with ID {gameId}", game.Id);
+        _logger.Info($"Successfully retrieved tickets for game with ID {game.Id}");
         return tickets;
     }
 
     public IEnumerable<Ticket> GetTicketsForClient(ClientFilterDTO filter)
     {
-        _logger.LogInformation($"Attempting to get all tickets for client that has name: {filter.ClientName} and address: {filter.ClientAddress}");
+        _logger.Info($"Attempting to get all tickets for client that has name: {filter.ClientName} and address: {filter.ClientAddress}");
         var connection = _dbUtils.GetConnection();
         var tickets = new List<Ticket>();
         try
@@ -218,7 +212,7 @@ public class TicketDBRepository : ITicketRepository
         }
         catch (Exception ex)
         {
-            _logger.LogInformation($"An exception occured when getting all tickets for client {ex.Message}");
+            _logger.Info($"An exception occured when getting all tickets for client {ex.Message}");
             throw new InvalidOperationException("An exception occurred when getting all tickets for client", ex);
         }
         return tickets;

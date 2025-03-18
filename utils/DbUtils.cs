@@ -1,24 +1,18 @@
 using System.Data;
+using System.Reflection;
+using log4net;
 using Microsoft.Data.Sqlite;
 
 namespace ConsoleApp1.utils;
-using Microsoft.Extensions.Logging;
 public class DbUtils
 {
     private readonly string _connectionString;
-    private readonly ILogger<DbUtils> _logger;
+    private static readonly ILog _logger = LogManager.GetLogger(MethodBase.GetCurrentMethod()?.DeclaringType);
     private IDbConnection _instance;
 
     public DbUtils(string connectionString)
     {
         _connectionString = connectionString;
-        
-        using var loggerFactory = LoggerFactory.Create(builder =>
-        {
-            builder.AddConsole();
-            builder.SetMinimumLevel(LogLevel.Information);
-        });
-        _logger = loggerFactory.CreateLogger<DbUtils>();
     }
 
     public IDbConnection GetConnection()
@@ -33,14 +27,14 @@ public class DbUtils
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Failed to establish a database connection");
+            _logger.Error("Failed to establish a database connection");
             throw new InvalidOperationException("Failed to establish a database connection", ex);
         }
     }
 
     private IDbConnection GetNewConnection()
     {
-        _logger.LogInformation("Trying to connect to database");
+        _logger.Info("Trying to connect to database");
         _instance = new SqliteConnection(_connectionString);
         _instance.Open();
         return _instance;

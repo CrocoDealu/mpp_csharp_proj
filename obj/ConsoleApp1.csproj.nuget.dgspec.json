@@ -56,13 +56,9 @@
               "target": "Package",
               "version": "[6.0.0, )"
             },
-            "Microsoft.Extensions.Logging": {
+            "log4net": {
               "target": "Package",
-              "version": "[10.0.0-preview.1.25080.5, )"
-            },
-            "Microsoft.Extensions.Logging.Console": {
-              "target": "Package",
-              "version": "[6.0.0, )"
+              "version": "[3.0.4, )"
             }
           },
           "imports": [

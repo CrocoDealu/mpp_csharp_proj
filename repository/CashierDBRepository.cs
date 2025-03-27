@@ -10,7 +10,6 @@ namespace ConsoleApp1.repository;
 
 public class CashierDBRepository: ICashierRepository
 {
-    
     private DbUtils _dbUtils;
     private static readonly ILog _logger = LogManager.GetLogger(MethodBase.GetCurrentMethod()?.DeclaringType);
 

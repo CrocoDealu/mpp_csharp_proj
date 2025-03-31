@@ -44,6 +44,22 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
+            "Avalonia": {
+              "target": "Package",
+              "version": "[11.2.6, )"
+            },
+            "Avalonia.Desktop": {
+              "target": "Package",
+              "version": "[11.2.6, )"
+            },
+            "Avalonia.ReactiveUI": {
+              "target": "Package",
+              "version": "[11.2.6, )"
+            },
+            "Avalonia.Themes.Fluent": {
+              "target": "Package",
+              "version": "[11.2.6, )"
+            },
             "Microsoft.Data.Sqlite": {
               "target": "Package",
               "version": "[10.0.0-preview.1.25081.1, )"

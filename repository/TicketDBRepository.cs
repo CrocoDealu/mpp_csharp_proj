@@ -84,14 +84,13 @@ public class TicketDBRepository : ITicketRepository
         {
             using (var command = connection.CreateCommand())
             {
-                command.CommandText = "INSERT INTO Tickets (game_id, customer_name, customer_address, cashier_id, no_of_seats, price) VALUES (@gameId, @customerName, @customerAddress, @cashierId, @noOfSeats, @price); SELECT last_insert_rowid();";
+                command.CommandText = "INSERT INTO Tickets (game_id, customer_name, customer_address, cashier_id, no_of_seats) VALUES (@gameId, @customerName, @customerAddress, @cashierId, @noOfSeats); SELECT last_insert_rowid();";
 
                 command.Parameters.Add(new SqliteParameter("@gameId", entity.Game.Id));
                 command.Parameters.Add(new SqliteParameter("@customerName", entity.CustomerName));
                 command.Parameters.Add(new SqliteParameter("@customerAddress", entity.CustomerAddress));
                 command.Parameters.Add(new SqliteParameter("@cashierId", entity.Seller.Id));
                 command.Parameters.Add(new SqliteParameter("@noOfSeats", entity.NoOfSeats));
-                command.Parameters.Add(new SqliteParameter("@price", entity.Price));
 
                 var generatedId = command.ExecuteScalar();
                 int id = Convert.ToInt32(generatedId);
@@ -141,14 +140,13 @@ public class TicketDBRepository : ITicketRepository
         {
             using (var command = connection.CreateCommand())
             {
-                command.CommandText = "UPDATE Tickets SET game_id = @gameId, customer_name = @customerName, customer_address = @customerAddress, cashier_id = @cashierId, no_of_seats = @noOfSeats, price = @price WHERE Id = @id";
+                command.CommandText = "UPDATE Tickets SET game_id = @gameId, customer_name = @customerName, customer_address = @customerAddress, cashier_id = @cashierId, no_of_seats = @noOfSeats WHERE Id = @id";
 
                 command.Parameters.Add(new SqliteParameter("@gameId", entity.Game.Id));
                 command.Parameters.Add(new SqliteParameter("@customerName", entity.CustomerName));
                 command.Parameters.Add(new SqliteParameter("@customerAddress", entity.CustomerAddress));
                 command.Parameters.Add(new SqliteParameter("@cashierId", entity.Seller.Id));
                 command.Parameters.Add(new SqliteParameter("@noOfSeats", entity.NoOfSeats));
-                command.Parameters.Add(new SqliteParameter("@price", entity.Price));
                 command.Parameters.Add(new SqliteParameter("@id", entity.Id));
 
                 command.ExecuteNonQuery();
@@ -192,7 +190,7 @@ public class TicketDBRepository : ITicketRepository
 
     public IEnumerable<Ticket> GetTicketsForClient(ClientFilterDTO filter)
     {
-        _logger.Info($"Attempting to get all tickets for client that has name: {filter.ClientName} and address: {filter.ClientAddress}");
+        _logger.Info($"Attempting to get all tickets for client");
         var connection = _dbUtils.GetConnection();
         var tickets = new List<Ticket>();
         try
@@ -221,35 +219,33 @@ public class TicketDBRepository : ITicketRepository
     private string ProcessFilter(string sql, ClientFilterDTO filter)
     {
         StringBuilder modified = new StringBuilder(sql);
-        if (filter != null)
+        if (filter != null && (filter.ClientName != null || filter.ClientAddress != null))
         {
             modified.Append(" WHERE ");
-            List<string> paramsList = new List<string>();
-            List<string> valuesList = new List<string>();
-
-            if (!string.IsNullOrEmpty(filter.ClientAddress))
+            List<string> parameters = new List<string>();
+            List<string> values = new List<string>();
+    
+            if (filter.ClientAddress != null && filter.ClientAddress.Length > 0)
             {
-                paramsList.Add("customer_address = ");
-                valuesList.Add(filter.ClientAddress);
+                parameters.Add("customer_address = ");
+                values.Add(filter.ClientAddress);
             }
-            if (!string.IsNullOrEmpty(filter.ClientName))
+    
+            if (filter.ClientName != null && filter.ClientName.Length > 0)
             {
-                paramsList.Add("customer_name = ");
-                valuesList.Add(filter.ClientName);
+                parameters.Add("customer_name = ");
+                values.Add(filter.ClientName);
             }
-
-            for (int i = 0; i < paramsList.Count; i++)
+    
+            for (int i = 0; i < parameters.Count; i++)
             {
-                if (i != paramsList.Count - 1)
+                if (i != parameters.Count - 1)
                 {
-                    modified.Append(paramsList[i])
-                        .Append("'").Append(valuesList[i]).Append("'")
-                        .Append(" AND ");
+                    modified.Append(parameters[i]).Append("'").Append(values[i]).Append("'").Append(" AND ");
                 }
                 else
                 {
-                    modified.Append(paramsList[i])
-                        .Append("'").Append(valuesList[i]).Append("'");
+                    modified.Append(parameters[i]).Append("'").Append(values[i]).Append("'");
                 }
             }
         }
@@ -264,11 +260,9 @@ public class TicketDBRepository : ITicketRepository
         string customerAddress = reader.GetString(3);
         int cashierId = reader.GetInt32(4);
         int noOfSeats = reader.GetInt32(5);
-        float price = reader.GetFloat(6);
-
         var game = _gameRepository.FindById(gameId);
         var cashier = _cashierRepository.FindById(cashierId);
 
-        return new Ticket(id, game, customerName, customerAddress, cashier, noOfSeats, price);
+        return new Ticket(id, game, customerName, customerAddress, cashier, noOfSeats);
     }
 }

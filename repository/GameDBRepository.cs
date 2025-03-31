@@ -78,7 +78,7 @@ public class GameDBRepository : IGameRepository
         {
             using (var command = connection.CreateCommand())
             {
-                command.CommandText = "INSERT INTO Games (team1, team2, team_1_score, team_2_score, competition, capacity, stage) VALUES (@team1, @team2, @team1Score, @team2Score, @competition, @capacity, @stage); SELECT last_insert_rowid();";
+                command.CommandText = "INSERT INTO Games (team1, team2, team_1_score, team_2_score, competition, capacity, stage, price) VALUES (@team1, @team2, @team1Score, @team2Score, @competition, @capacity, @stage, @price); SELECT last_insert_rowid();";
 
                 command.Parameters.Add(new SqliteParameter("@team1", entity.Team1));
                 command.Parameters.Add(new SqliteParameter("@team2", entity.Team2));
@@ -87,6 +87,7 @@ public class GameDBRepository : IGameRepository
                 command.Parameters.Add(new SqliteParameter("@competition", entity.Competition));
                 command.Parameters.Add(new SqliteParameter("@capacity", entity.Capacity));
                 command.Parameters.Add(new SqliteParameter("@stage", entity.Stage));
+                command.Parameters.Add(new SqliteParameter("@price", entity.Price));
 
                 var generatedId = command.ExecuteScalar();
                 int id = Convert.ToInt32(generatedId);
@@ -136,7 +137,7 @@ public class GameDBRepository : IGameRepository
         {
             using (var command = connection.CreateCommand())
             {
-                command.CommandText = "UPDATE Games SET team1 = @team1, team2 = @team2, team_1_score = @team1Score, team_2_score = @team2Score, competition = @competition, capacity = @capacity, stage = @stage WHERE Id = @id";
+                command.CommandText = "UPDATE Games SET team1 = @team1, team2 = @team2, team_1_score = @team1Score, team_2_score = @team2Score, competition = @competition, capacity = @capacity, stage = @stage, price = @price WHERE Id = @id";
 
                 command.Parameters.Add(new SqliteParameter("@team1", entity.Team1));
                 command.Parameters.Add(new SqliteParameter("@team2", entity.Team2));
@@ -145,6 +146,7 @@ public class GameDBRepository : IGameRepository
                 command.Parameters.Add(new SqliteParameter("@competition", entity.Competition));
                 command.Parameters.Add(new SqliteParameter("@capacity", entity.Capacity));
                 command.Parameters.Add(new SqliteParameter("@stage", entity.Stage));
+                command.Parameters.Add(new SqliteParameter("@price", entity.Price));
                 command.Parameters.Add(new SqliteParameter("@id", entity.Id));
 
                 command.ExecuteNonQuery();
@@ -173,6 +175,7 @@ public class GameDBRepository : IGameRepository
         string competition = reader.GetString(5);
         int capacity = reader.GetInt32(6);
         string stage = reader.GetString(7);
-        return new Game(id, team1, team2, team1Score, team2Score, competition, capacity, stage);
+        float price = reader.GetFloat(8);
+        return new Game(id, team1, team2, team1Score, team2Score, competition, capacity, stage, price);
     }
 }

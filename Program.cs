@@ -6,46 +6,33 @@ using Microsoft.Extensions.Configuration;
 using System;
 using System.IO;
 using System.Reflection;
+using Avalonia;
+using Avalonia.Controls.ApplicationLifetimes;
+using Avalonia.ReactiveUI;
+using System;
+using ConsoleApp1.service;
+using ConsoleApp1.views;
 using log4net;
 using log4net.Config;
 
 
 
+//
 
-var configuration = new ConfigurationBuilder()
-    .SetBasePath(Directory.GetCurrentDirectory())  
-    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true) 
-    .Build();
 
-string connectionString = configuration.GetSection("ConnectionStrings:MyDbConnection").Value;
-
-var dbutils = new DbUtils(connectionString);
-
-var logRepository = LogManager.GetRepository(Assembly.GetEntryAssembly()!);
-XmlConfigurator.Configure(logRepository, new FileInfo("log4net.config"));
-
-var cashierDbRepository = new CashierDBRepository(dbutils, configuration);
-// Cashier c = new Cashier(2, "David", "parola", "yoda");
-// cashierDbRepository.Update(c);
-
-foreach (var cashier in cashierDbRepository.FindAll())
+namespace ConsoleApp1
 {
-    Console.WriteLine(cashier);
-}
+    class Program
+    {
+        [STAThread]
+        public static void Main(string[] args) =>
+            BuildAvaloniaApp().StartWithClassicDesktopLifetime(args);
 
-var gameDbRepository = new GameDBRepository(dbutils);
-
-
-// gameDbRepository.Save(new Game(0, "Steaua", "Rapid", 10, 0, "Europa League", 50000, "Finals"));
-foreach (var game in gameDbRepository.FindAll())
-{
-    Console.WriteLine(game);
-}
-
-var ticketDbRepository = new TicketDBRepository(dbutils, gameDbRepository, cashierDbRepository);
-
-foreach (var ticket in ticketDbRepository.GetTicketsForClient(new ClientFilterDTO("", "Margaretelor")))
-{
-    Console.WriteLine(ticket);
+        public static AppBuilder BuildAvaloniaApp() =>
+            AppBuilder.Configure<App>()
+                .UsePlatformDetect()
+                .LogToTrace()
+                .UseReactiveUI();
+    }
 }
 

@@ -1,0 +1,69 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="ConsoleApp1.views.MainWindow"
+        Title="Main Panel"
+        Width="700" Height="413">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <TextBlock Text="Name of app" FontSize="32" FontWeight="Bold" HorizontalAlignment="Center" Grid.Row="0" Margin="10"/>
+        
+        <Grid Grid.Row="1" Margin="20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.5*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            
+            <ListBox Name="matchList" Grid.Column="0" Width="336" Height="303">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Spacing="10" HorizontalAlignment="Center">
+                            <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{0} vs {1}">
+                                        <Binding Path="Team1" />
+                                        <Binding Path="Team2" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                            <TextBlock Text="{Binding Price, StringFormat='Price: {0}$'}" />
+                            <TextBlock Name="capacityText" 
+                                       Text="{Binding Capacity, Converter={StaticResource CapacityConverter}}" 
+                                       Foreground="{Binding Capacity, Converter={StaticResource CapacityColorConverter}}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            
+            <StackPanel Grid.Column="1" HorizontalAlignment="Center" Spacing="10">
+                <StackPanel HorizontalAlignment="Center">
+                    <TextBlock Text="Sell Ticket" FontSize="26" FontWeight="Bold" HorizontalAlignment="Center"/>
+                    <TextBlock Name="forGameLabel" HorizontalAlignment="Center"/>
+                </StackPanel>
+                
+                <StackPanel>
+                    <TextBlock Text="Client Name"/>
+                    <TextBox Name="clientName" Width="200"/>
+                    
+                    <TextBlock Text="Client Address"/>
+                    <TextBox Name="clientAddress" Width="200"/>
+                    
+                    <TextBlock Text="No. of Seats"/>
+                    <NumericUpDown Name="noOfSeats" Width="150" />
+                </StackPanel>
+                
+                <Button Name="sellButton" Content="Sell Ticket" Width="150" Click="OnSell"/>
+            </StackPanel>
+        </Grid>
+        
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Spacing="20" Margin="10">
+            <Button Name="viewTickets" Content="Tickets" Width="100" Click="OnViewTickets"/>
+            <Button Name="logOut" Content="Log Out" Width="100" Click="OnLogOut"/>
+        </StackPanel>
+    </Grid>
+</Window>

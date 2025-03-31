@@ -1,5 +1,6 @@
 using System.Data;
 using System.Reflection;
+using Avalonia.Data;
 using ConsoleApp1.model;
 using ConsoleApp1.utils;
 using log4net;
@@ -152,12 +153,39 @@ public class CashierDBRepository: ICashierRepository
         }
     }
 
+    public Cashier? FindByUsername(string username)
+    {
+        _logger.Info($"Attempting to find cashier with username {username}");
+        var connection = _dbUtils.GetConnection();
+        Cashier? cashier = null;
+        try
+        {
+            using (var command = connection.CreateCommand())
+            {
+                command.CommandText = "SELECT * FROM Cashiers WHERE  username = @username";
+                command.Parameters.Add(new SqliteParameter("@username", username));
+                var reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    cashier = mapReaderToEntity(reader);
+                }
+            }
+            
+        }
+        catch (Exception ex)
+        {
+            _logger.Error($"An exception occurred while retrieving cashier with username {username}: {ex.Message}");
+            throw new InvalidOperationException("An exception occurred while retrieving cashier", ex);
+        }
+        return cashier;
+    }
+
     private Cashier mapReaderToEntity(IDataReader reader)
     {
         int id = reader.GetInt32(0);
         string name = reader.GetString(1);
         string password = reader.GetString(2);
         string username = reader.GetString(3);
-        return new Cashier(id, name, password, username);
+        return new Cashier(id, name, username, password);
     }
 }

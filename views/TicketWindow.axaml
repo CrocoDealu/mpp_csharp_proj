@@ -1,0 +1,55 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="700" d:DesignHeight="413"
+        x:Class="ConsoleApp1.views.TicketWindow"
+        Title="TicketWindow"
+        Width="700" Height="413">
+    <Grid>
+        <StackPanel Orientation="Vertical" Margin="0,7,0,0" Width="700" Height="406">
+            <StackPanel Orientation="Horizontal" Height="50" HorizontalAlignment="Center" Spacing="20">
+                <TextBox Name="nameField" Width="150" Watermark="Name" />
+                <TextBox Name="addressField" Width="150" Watermark="Address" />
+                <Button Name="searchButton" Content="Search" Click="OnSearchPressed" />
+            </StackPanel>
+            
+            <!-- Header Row -->
+            <Grid ColumnDefinitions="123.5,310.5,160,103.5">
+                <Border Grid.Column="0" BorderBrush="Gray" BorderThickness="1">
+                    <TextBlock Text="Client Name" Padding="5" FontWeight="Bold" />
+                </Border>
+                <Border Grid.Column="1" BorderBrush="Gray" BorderThickness="1">
+                    <TextBlock Text="Client Address" Padding="5" FontWeight="Bold" />
+                </Border>
+                <Border Grid.Column="2" BorderBrush="Gray" BorderThickness="1">
+                    <TextBlock Text="Match" Padding="5" FontWeight="Bold" />
+                </Border>
+                <Border Grid.Column="3" BorderBrush="Gray" BorderThickness="1">
+                    <TextBlock Text="Seats Bought" Padding="5" FontWeight="Bold" />
+                </Border>
+            </Grid>
+            
+            <ListBox Name="ticketsTable" Background="Transparent" BorderThickness="0">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid ColumnDefinitions="123.5,310.5,160,103.5">
+                            <Border Grid.Column="0" BorderBrush="LightGray" BorderThickness="1">
+                                <TextBlock Text="{Binding CustomerName}" Padding="5" />
+                            </Border>
+                            <Border Grid.Column="1" BorderBrush="LightGray" BorderThickness="1">
+                                <TextBlock Text="{Binding CustomerAddress}" Padding="5" />
+                            </Border>
+                            <Border Grid.Column="2" BorderBrush="LightGray" BorderThickness="1">
+                                <TextBlock Text="{Binding Game, Converter={StaticResource MatchConverter}}" Padding="5" />
+                            </Border>
+                            <Border Grid.Column="3" BorderBrush="LightGray" BorderThickness="1">
+                                <TextBlock Text="{Binding NoOfSeats}" Padding="5" />
+                            </Border>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </StackPanel>
+    </Grid>
+</Window>

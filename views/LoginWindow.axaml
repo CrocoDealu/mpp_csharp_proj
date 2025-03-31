@@ -1,0 +1,24 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="ConsoleApp1.views.LoginWindow"
+        Title="Login"
+        Width="339" Height="413">
+    <StackPanel Margin="20" Spacing="10">
+        
+        <TextBlock Text="My Avalonia App" FontSize="24" FontWeight="Bold" HorizontalAlignment="Left"/>
+
+        <StackPanel Orientation="Vertical" Spacing="10" HorizontalAlignment="Left">
+            <TextBlock Text="Username:" VerticalAlignment="Center"/>
+            <TextBox Name="usernameInput" Width="200"/>
+            <Label Name="usernameError" Foreground="Red"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical" Spacing="10" HorizontalAlignment="Left">
+            <TextBlock Text="Password:" VerticalAlignment="Center"/>
+            <TextBox Name="passwordInput" Width="200" PasswordChar="•"/>
+            <Label Name="passwordError" Foreground="Red"/>
+        </StackPanel>
+
+        <Button Content="Login" Width="100" Click="OnLoginClick" HorizontalAlignment="Left"/>
+    </StackPanel>
+</Window>

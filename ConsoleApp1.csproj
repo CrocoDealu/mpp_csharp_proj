@@ -8,6 +8,10 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="Avalonia" Version="11.2.6" />
+        <PackageReference Include="Avalonia.Desktop" Version="11.2.6" />
+        <PackageReference Include="Avalonia.ReactiveUI" Version="11.2.6" />
+        <PackageReference Include="Avalonia.Themes.Fluent" Version="11.2.6" />
         <PackageReference Include="log4net" Version="3.0.4" />
         <PackageReference Include="Microsoft.Data.Sqlite" Version="10.0.0-preview.1.25081.1" />
         <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.0" />

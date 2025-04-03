@@ -7,52 +7,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="72b6b256-3bc6-4cc6-9b77-74a2aa0da831" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/service/SportsTicketManagementService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/CapacityColorConverter.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/CapacityConverter.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/TeamVsTeamConverter.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/App.axaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/App.axaml.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/LoginWindow.axaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/LoginWindow.axaml.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/MainWindow.axaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/MainWindow.axaml.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/TicketWindow.axaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/TicketWindow.axaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConsoleApp1.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp1.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Debug/net9.0/ConsoleApp1.deps.json" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net9.0/ConsoleApp1.deps.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Debug/net9.0/ConsoleApp1.dll" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net9.0/ConsoleApp1.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Debug/net9.0/ConsoleApp1.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net9.0/ConsoleApp1.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/Game.cs" beforeDir="false" afterPath="$PROJECT_DIR$/model/Game.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/Ticket.cs" beforeDir="false" afterPath="$PROJECT_DIR$/model/Ticket.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/ConsoleApp1.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/ConsoleApp1.csproj.nuget.dgspec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/ConsoleApp1.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/obj/ConsoleApp1.csproj.nuget.g.props" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/ConsoleApp1.csproj.nuget.g.targets" beforeDir="false" afterPath="$PROJECT_DIR$/obj/ConsoleApp1.csproj.nuget.g.targets" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net9.0/ConsoleApp1.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net9.0/ConsoleApp1.AssemblyInfo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net9.0/ConsoleApp1.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net9.0/ConsoleApp1.AssemblyInfoInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net9.0/ConsoleApp1.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net9.0/ConsoleApp1.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net9.0/ConsoleApp1.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net9.0/ConsoleApp1.assets.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net9.0/ConsoleApp1.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net9.0/ConsoleApp1.csproj.AssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net9.0/ConsoleApp1.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net9.0/ConsoleApp1.csproj.CoreCompileInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net9.0/ConsoleApp1.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net9.0/ConsoleApp1.csproj.FileListAbsolute.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net9.0/ConsoleApp1.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net9.0/ConsoleApp1.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net9.0/ConsoleApp1.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net9.0/ConsoleApp1.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net9.0/ConsoleApp1.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net9.0/ConsoleApp1.sourcelink.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net9.0/ref/ConsoleApp1.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net9.0/ref/ConsoleApp1.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net9.0/refint/ConsoleApp1.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net9.0/refint/ConsoleApp1.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/project.assets.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/project.nuget.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/project.packagespec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/obj/rider.project.model.nuget.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/obj/rider.project.restore.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repository/CashierDBRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/repository/CashierDBRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repository/GameDBRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/repository/GameDBRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repository/ICashierRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/repository/ICashierRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repository/ITicketRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/repository/ITicketRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repository/TicketDBRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/repository/TicketDBRepository.cs" afterDir="false" />
-    </list>
+    <list default="true" id="72b6b256-3bc6-4cc6-9b77-74a2aa0da831" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -139,6 +94,7 @@
       <workItem from="1743262502071" duration="196000" />
       <workItem from="1743435056428" duration="974000" />
       <workItem from="1743436033555" duration="8428000" />
+      <workItem from="1743444647967" duration="372000" />
     </task>
     <servers />
   </component>

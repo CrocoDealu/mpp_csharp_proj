@@ -15,11 +15,6 @@ using ConsoleApp1.views;
 using log4net;
 using log4net.Config;
 
-
-
-//
-
-
 namespace ConsoleApp1
 {
     class Program

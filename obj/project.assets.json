@@ -596,6 +596,19 @@
           "lib/netstandard1.0/_._": {}
         }
       },
+      "Newtonsoft.Json/13.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "ReactiveUI/20.1.1": {
         "type": "package",
         "dependencies": {
@@ -1076,6 +1089,23 @@
         },
         "runtime": {
           "lib/net8.0/Tmds.DBus.Protocol.dll": {}
+        }
+      },
+      "backend/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "Microsoft.Data.Sqlite": "10.0.0-preview.3.25171.6",
+          "Microsoft.Extensions.Configuration": "10.0.0-preview.3.25171.5",
+          "Microsoft.Extensions.Configuration.Json": "10.0.0-preview.3.25171.5",
+          "Newtonsoft.Json": "13.0.3",
+          "log4net": "3.0.5-preview.2"
+        },
+        "compile": {
+          "bin/placeholder/backend.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/backend.dll": {}
         }
       }
     }
@@ -1899,6 +1929,36 @@
         "version.txt"
       ]
     },
+    "Newtonsoft.Json/13.0.3": {
+      "sha512": "HrC5BXdl00IP9zeV+0Z848QWPAoCr9P3bDEZguI+gkLcBKAOxix/tLEAAHC+UvDNPv4a2d18lOReHMOagPa+zQ==",
+      "type": "package",
+      "path": "newtonsoft.json/13.0.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.md",
+        "README.md",
+        "lib/net20/Newtonsoft.Json.dll",
+        "lib/net20/Newtonsoft.Json.xml",
+        "lib/net35/Newtonsoft.Json.dll",
+        "lib/net35/Newtonsoft.Json.xml",
+        "lib/net40/Newtonsoft.Json.dll",
+        "lib/net40/Newtonsoft.Json.xml",
+        "lib/net45/Newtonsoft.Json.dll",
+        "lib/net45/Newtonsoft.Json.xml",
+        "lib/net6.0/Newtonsoft.Json.dll",
+        "lib/net6.0/Newtonsoft.Json.xml",
+        "lib/netstandard1.0/Newtonsoft.Json.dll",
+        "lib/netstandard1.0/Newtonsoft.Json.xml",
+        "lib/netstandard1.3/Newtonsoft.Json.dll",
+        "lib/netstandard1.3/Newtonsoft.Json.xml",
+        "lib/netstandard2.0/Newtonsoft.Json.dll",
+        "lib/netstandard2.0/Newtonsoft.Json.xml",
+        "newtonsoft.json.13.0.3.nupkg.sha512",
+        "newtonsoft.json.nuspec",
+        "packageIcon.png"
+      ]
+    },
     "ReactiveUI/20.1.1": {
       "sha512": "9hNPknWjijnaSWs6auypoXqUptPZcRpUypF+cf1zD50fgW+SEoQda502N3fVZ2eWPcaiUad+z6GaLwOWmUVHNw==",
       "type": "package",
@@ -2685,6 +2745,11 @@
         "tmds.dbus.protocol.0.20.0.nupkg.sha512",
         "tmds.dbus.protocol.nuspec"
       ]
+    },
+    "backend/1.0.0": {
+      "type": "project",
+      "path": "backend/backend.csproj",
+      "msbuildProject": "backend/backend.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -2696,6 +2761,8 @@
       "Microsoft.Data.Sqlite >= 10.0.0-preview.1.25081.1",
       "Microsoft.Extensions.Configuration >= 6.0.0",
       "Microsoft.Extensions.Configuration.Json >= 6.0.0",
+      "Newtonsoft.Json >= 13.0.3",
+      "backend >= 1.0.0",
       "log4net >= 3.0.4"
     ]
   },
@@ -2723,7 +2790,11 @@
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "/home/david/development/C#-ws/MPP/ConsoleApp1/backend/backend.csproj": {
+              "projectPath": "/home/david/development/C#-ws/MPP/ConsoleApp1/backend/backend.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -2770,6 +2841,10 @@
             "target": "Package",
             "version": "[6.0.0, )"
           },
+          "Newtonsoft.Json": {
+            "target": "Package",
+            "version": "[13.0.3, )"
+          },
           "log4net": {
             "target": "Package",
             "version": "[3.0.4, )"
@@ -2802,6 +2877,42 @@
       "warningLevel": 1,
       "message": "Package 'System.Text.Json' 6.0.0 has a known high severity vulnerability, https://github.com/advisories/GHSA-8g4q-xg66-9fp4",
       "libraryId": "System.Text.Json",
+      "targetGraphs": [
+        "net9.0"
+      ]
+    },
+    {
+      "code": "NU1605",
+      "level": "Error",
+      "message": "Warning As Error: Detected package downgrade: log4net from 3.0.5-preview.2 to 3.0.4. Reference the package directly from the project to select a different version. \n ConsoleApp1 -> backend -> log4net (>= 3.0.5-preview.2) \n ConsoleApp1 -> log4net (>= 3.0.4)",
+      "libraryId": "log4net",
+      "targetGraphs": [
+        "net9.0"
+      ]
+    },
+    {
+      "code": "NU1605",
+      "level": "Error",
+      "message": "Warning As Error: Detected package downgrade: Microsoft.Data.Sqlite from 10.0.0-preview.3.25171.6 to 10.0.0-preview.1.25081.1. Reference the package directly from the project to select a different version. \n ConsoleApp1 -> backend -> Microsoft.Data.Sqlite (>= 10.0.0-preview.3.25171.6) \n ConsoleApp1 -> Microsoft.Data.Sqlite (>= 10.0.0-preview.1.25081.1)",
+      "libraryId": "Microsoft.Data.Sqlite",
+      "targetGraphs": [
+        "net9.0"
+      ]
+    },
+    {
+      "code": "NU1605",
+      "level": "Error",
+      "message": "Warning As Error: Detected package downgrade: Microsoft.Extensions.Configuration from 10.0.0-preview.3.25171.5 to 6.0.0. Reference the package directly from the project to select a different version. \n ConsoleApp1 -> backend -> Microsoft.Extensions.Configuration (>= 10.0.0-preview.3.25171.5) \n ConsoleApp1 -> Microsoft.Extensions.Configuration (>= 6.0.0)",
+      "libraryId": "Microsoft.Extensions.Configuration",
+      "targetGraphs": [
+        "net9.0"
+      ]
+    },
+    {
+      "code": "NU1605",
+      "level": "Error",
+      "message": "Warning As Error: Detected package downgrade: Microsoft.Extensions.Configuration.Json from 10.0.0-preview.3.25171.5 to 6.0.0. Reference the package directly from the project to select a different version. \n ConsoleApp1 -> backend -> Microsoft.Extensions.Configuration.Json (>= 10.0.0-preview.3.25171.5) \n ConsoleApp1 -> Microsoft.Extensions.Configuration.Json (>= 6.0.0)",
+      "libraryId": "Microsoft.Extensions.Configuration.Json",
       "targetGraphs": [
         "net9.0"
       ]

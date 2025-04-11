@@ -17,9 +17,7 @@
         <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.0" />
         <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
 
-        <None Update="appsettings.json">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     </ItemGroup>
 
     <ItemGroup>
@@ -27,6 +25,27 @@
       <Content Include="log4net.config">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>
+      <None Update="backend\appsettings.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <UpToDateCheckInput Remove="views\App.axaml" />
+      <UpToDateCheckInput Remove="views\LoginWindow.axaml" />
+      <UpToDateCheckInput Remove="views\MainWindow.axaml" />
+      <UpToDateCheckInput Remove="views\TicketWindow.axaml" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <AdditionalFiles Include="frontend\views\App.axaml" />
+      <AdditionalFiles Include="frontend\views\LoginWindow.axaml" />
+      <AdditionalFiles Include="frontend\views\MainWindow.axaml" />
+      <AdditionalFiles Include="frontend\views\TicketWindow.axaml" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="backend\backend.csproj" />
     </ItemGroup>
 
 </Project>

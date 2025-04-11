@@ -48,7 +48,7 @@ public class SportsTicketManagementService
             {
                 ["type"] = "GAMES"
             };
-            String updateNotifyG = updateTicketListMessage.ToString(Newtonsoft.Json.Formatting.None);
+            String updateNotifyG = updateGameListMessage.ToString(Newtonsoft.Json.Formatting.None);
             NotifyClients(updateNotifyG);
 
             return savedTicket;

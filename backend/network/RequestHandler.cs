@@ -21,6 +21,7 @@ public class RequestHandler
         try
         {
             var request = JObject.Parse(requestString);
+            
             var response = new JObject();
 
             if (request.ContainsKey("messageId"))

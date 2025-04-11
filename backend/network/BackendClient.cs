@@ -11,7 +11,6 @@ public class BackendClient : ISubscriber, IDisposable
     public BackendClient(TcpClient tcpClient)
     {
         _client = tcpClient;
-
         NetworkStream networkStream = _client.GetStream();
         _reader = new StreamReader(networkStream);
         _writer = new StreamWriter(networkStream) { AutoFlush = true };
@@ -26,11 +25,12 @@ public class BackendClient : ISubscriber, IDisposable
     {
         try
         {
-            if (!IsConnected() || !_client.Connected)
+            if (!IsConnected())
             {
+                Console.WriteLine("A trecut p aci");    
                 return null;
             }
-
+            
             return _reader.ReadLine();
         }
         catch (IOException)
@@ -57,7 +57,7 @@ public class BackendClient : ISubscriber, IDisposable
     
     public bool IsConnected()
     {
-        return _client.Connected && !_client.Client.Poll(1, SelectMode.SelectRead) && _client.Client.Available == 0;
+        return _client.Connected;
     }
 
     public bool IsClosed()

@@ -10,14 +10,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="72b6b256-3bc6-4cc6-9b77-74a2aa0da831" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/frontend/model/Cashier.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/model/ClientFilterDTO.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/model/Entity.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/model/Game.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/model/Ticket.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/network/ConnectionManager.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/network/FrontendClient.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/network/JSONDispatcher.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/network/ResponseParser.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/utils/Listener.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ConsoleApp1/.idea/avalonia.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ConsoleApp1/.idea/avalonia.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ConsoleApp1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ConsoleApp1/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Program.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/bin/Debug/net9.0/backend.dll" beforeDir="false" afterPath="$PROJECT_DIR$/backend/bin/Debug/net9.0/backend.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/bin/Debug/net9.0/backend.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/backend/bin/Debug/net9.0/backend.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/network/BackendClient.cs" beforeDir="false" afterPath="$PROJECT_DIR$/backend/network/BackendClient.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/network/ClientManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/backend/network/ClientManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/network/JSONServer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/backend/network/JSONServer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/network/RequestHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/backend/network/RequestHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/model/Game.cs" beforeDir="false" afterPath="$PROJECT_DIR$/backend/model/Game.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/obj/Debug/net9.0/backend.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/backend/obj/Debug/net9.0/backend.AssemblyInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/obj/Debug/net9.0/backend.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/backend/obj/Debug/net9.0/backend.AssemblyInfoInputs.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/obj/Debug/net9.0/backend.dll" beforeDir="false" afterPath="$PROJECT_DIR$/backend/obj/Debug/net9.0/backend.dll" afterDir="false" />
@@ -26,9 +34,26 @@
       <change beforePath="$PROJECT_DIR$/backend/obj/Debug/net9.0/ref/backend.dll" beforeDir="false" afterPath="$PROJECT_DIR$/backend/obj/Debug/net9.0/ref/backend.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/obj/Debug/net9.0/refint/backend.dll" beforeDir="false" afterPath="$PROJECT_DIR$/backend/obj/Debug/net9.0/refint/backend.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/backend/obj/rider.project.model.nuget.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/service/SportsTicketManagementService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/backend/service/SportsTicketManagementService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/backend/obj/rider.project.restore.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/frontend.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/frontend.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/obj/Debug/net9.0/frontend.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/obj/Debug/net9.0/frontend.AssemblyInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/obj/Debug/net9.0/frontend.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/obj/Debug/net9.0/frontend.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/obj/Debug/net9.0/frontend.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/obj/Debug/net9.0/frontend.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/obj/Debug/net9.0/frontend.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/obj/Debug/net9.0/frontend.assets.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/obj/frontend.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/obj/frontend.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/obj/frontend.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/obj/frontend.csproj.nuget.g.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/obj/frontend.csproj.nuget.g.targets" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/obj/frontend.csproj.nuget.g.targets" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/obj/project.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/obj/project.packagespec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/obj/rider.project.model.nuget.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/obj/rider.project.restore.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/views/App.axaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/views/App.axaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/views/LoginWindow.axaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/views/LoginWindow.axaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/views/MainWindow.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/views/MainWindow.axaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/views/MainWindow.axaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/views/MainWindow.axaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/views/TicketWindow.axaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/views/TicketWindow.axaml.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net9.0/ConsoleApp1.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net9.0/ConsoleApp1.AssemblyInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net9.0/ConsoleApp1.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net9.0/ConsoleApp1.AssemblyInfoInputs.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net9.0/ConsoleApp1.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net9.0/ConsoleApp1.csproj.AssemblyReference.cache" afterDir="false" />
@@ -63,30 +88,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;.NET Project.ConsoleApp1.executor&quot;: &quot;Run&quot;,
-    &quot;.NET Project.backend.executor&quot;: &quot;Run&quot;,
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;1.0601852&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;cliServ&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    ".NET Project.ConsoleApp1.executor": "Run",
+    ".NET Project.backend.executor": "Run",
+    ".NET Project.frontend.executor": "Run",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "cliServ",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;sqlite&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "sqlite"
     ]
   }
-}</component>
-  <component name="RunManager" selected=".NET Project.backend">
+}]]></component>
+  <component name="RunManager" selected=".NET Project.frontend">
     <configuration name="ConsoleApp1" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
       <option name="PROGRAM_PARAMETERS" value="" />
@@ -167,7 +192,8 @@
       <workItem from="1744354685047" duration="6872000" />
       <workItem from="1744362041626" duration="1572000" />
       <workItem from="1744373907260" duration="137000" />
-      <workItem from="1744374052161" duration="733000" />
+      <workItem from="1744374052161" duration="1887000" />
+      <workItem from="1744445754830" duration="12305000" />
     </task>
     <servers />
   </component>
@@ -194,32 +220,26 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/frontend/views/TicketWindow.axaml.cs</url>
-          <line>69</line>
+          <line>99</line>
           <properties documentPath="$PROJECT_DIR$/views/TicketWindow.axaml.cs" containingFunctionPresentation="Method 'OnSearchPressed'">
             <startOffsets>
-              <option value="1952" />
+              <option value="3228" />
             </startOffsets>
             <endOffsets>
-              <option value="2003" />
+              <option value="3279" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/frontend/views/MainWindow.axaml.cs</url>
-          <line>99</line>
-          <properties documentPath="$PROJECT_DIR$/views/MainWindow.axaml.cs" containingFunctionPresentation="Method 'canSellTicket'" />
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/backend/Program.cs</url>
-          <line>37</line>
+          <line>36</line>
           <properties documentPath="$PROJECT_DIR$/backend/Program.cs" containingFunctionPresentation="Method 'Main'">
             <startOffsets>
-              <option value="1578" />
+              <option value="1589" />
             </startOffsets>
             <endOffsets>
-              <option value="1591" />
+              <option value="1602" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="13" />

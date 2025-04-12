@@ -7,4 +7,17 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Avalonia" Version="11.3.0-beta1" />
+      <PackageReference Include="Avalonia.Desktop" Version="11.3.0-beta1" />
+      <PackageReference Include="Avalonia.ReactiveUI" Version="11.3.0-beta1" />
+      <PackageReference Include="Avalonia.Themes.Fluent" Version="11.3.0-beta1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="Newtonsoft.Json">
+        <HintPath>..\..\..\..\..\.nuget\packages\newtonsoft.json\13.0.3\lib\net6.0\Newtonsoft.Json.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
 </Project>

@@ -25,8 +25,7 @@ namespace backend
             var dbutils = new DbUtils(connectionString);
             var logRepository = LogManager.GetRepository(Assembly.GetEntryAssembly()!);
             XmlConfigurator.Configure(logRepository, new FileInfo("log4net.config"));
-
-
+            
             ICashierRepository cashierRepo = new CashierDBRepository(dbutils, configuration);
             IGameRepository gameRepo = new GameDBRepository(dbutils);
             ITicketRepository ticketRepo = new TicketDBRepository(dbutils, gameRepo, cashierRepo);

@@ -1,9 +1,11 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
-using Avalonia.Markup.Xaml;
 using ConsoleApp1.model;
-using ConsoleApp1.service;
+using frontend.network;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using Avalonia.Threading;
 
 namespace ConsoleApp1.views;
 
@@ -11,45 +13,79 @@ namespace ConsoleApp1.views;
 public partial class LoginWindow : Window
 {
     
-    private SportsTicketManagementService _service;
-    public LoginWindow(SportsTicketManagementService service)
+    public LoginWindow()
     {
         InitializeComponent();
-        _service = service;
     }
 
     private void OnLoginClick(object sender, RoutedEventArgs e)
     {
         string username = usernameInput.Text;
         string password = passwordInput.Text;
-        Cashier? cashier = _service.GetCashierByUsername(username);
-        
+        JObject request = new JObject();
+        JObject requestPayload = new JObject();
+        requestPayload["username"] = username;
+        requestPayload["password"] = password;
+        request["payload"] = requestPayload;
+        request["type"] = "LOGIN";
+        request["messageId"] = ConnectionManager.GetMessageId();
+        FrontendClient frontendClient = ConnectionManager.GetClient();
+        try
+        {
+            string requestString = JsonConvert.SerializeObject(request);
+            ConnectionManager.GetDispatcher().AddPendingRequest(request).Task.ContinueWith(task =>
+            {
+                if (task.Status == TaskStatus.RanToCompletion)
+                {
+                    JObject response = task.Result;
+                    object responseHandled = ConnectionManager.GetResponseParser().HandleResponse(response.ToString());
+                    
+                    if (responseHandled is Tuple<Cashier, string> responseTuple)
+                    {
+                        string reason = responseTuple.Item2;
+                        Cashier cashier = responseTuple.Item1;
 
-        if (cashier != null)
-        {
-            if (password == cashier.Password)
-            {
-                OpenMainPanel(cashier);
-            }
-            else
-            {
-                ClearFields();
-                passwordError.Content = "Wrong password";
-            }
+                        if (reason == "USER_NOT_FOUND")
+                        {
+                            usernameError.Content = "Username not found";
+                        }
+                        else if (reason == "INCORRECT_PASSWORD")
+                        {
+                            passwordError.Content = "Wrong password!";
+                        }
+                        else
+                        {
+                            OpenMainPanel(cashier);
+                        }
+                    }
+                }
+                else if (task.Status == TaskStatus.Faulted)
+                {
+                    Console.WriteLine($"Task failed with exception: {task.Exception}");
+                }
+                else if (task.Status == TaskStatus.Canceled)
+                {
+                    Console.WriteLine("Task was canceled.");
+                }
+            });
+            frontendClient.send(requestString);
+            
         }
-        else
+        catch (Exception ex)
         {
-            ClearFields();
-            usernameError.Content = "Username not found!";
+            Console.WriteLine(ex);
         }
         
     }
 
     private void OpenMainPanel(Cashier cashier)
     {
-        var mainPanel = new MainWindow(_service, cashier);
-        mainPanel.Show();
-        this.Close();
+        Dispatcher.UIThread.Post(() =>
+        {
+            var mainPanel = new MainWindow(cashier);
+            mainPanel.Show();
+            Close();
+        });
     }
 
     private void ClearFields()

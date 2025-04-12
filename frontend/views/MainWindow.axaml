@@ -31,7 +31,7 @@
                                     </MultiBinding>
                                 </TextBlock.Text>
                             </TextBlock>
-                            <TextBlock Text="{Binding Price, StringFormat='Price: {0}$'}" />
+                            <TextBlock Text="{Binding TicketPrice, StringFormat= Price: {0}$}"/>
                             <TextBlock Name="capacityText" 
                                        Text="{Binding Capacity, Converter={StaticResource CapacityConverter}}" 
                                        Foreground="{Binding Capacity, Converter={StaticResource CapacityColorConverter}}" />

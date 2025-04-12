@@ -1,5 +1,9 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
+using Avalonia;
+using Avalonia.ReactiveUI;
+using ConsoleApp1.views;
+
 namespace frontend
 {
     class Program

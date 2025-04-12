@@ -1,22 +1,26 @@
+using System.Text.RegularExpressions;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
+using Avalonia.Threading;
 using ConsoleApp1.model;
-using ConsoleApp1.service;
 using ConsoleApp1.utils;
+using frontend.network;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace ConsoleApp1.views;
 
 public partial class MainWindow : Window
 {
-    private SportsTicketManagementService _service;
     private Cashier _loggedCashier;
     private Game _selectedGame;
-
-    public MainWindow(SportsTicketManagementService service, Cashier loggedCashier)
+    private readonly List<Window> openedStages = new();
+    private object lockObject = new object();
+    
+    public MainWindow(Cashier loggedCashier)
     {
-        _service = service;
         _loggedCashier = loggedCashier;
         
         InitializeComponent();
@@ -36,9 +40,49 @@ public partial class MainWindow : Window
 
     private void InitializeMatches()
     {
-        var games = _service.GetAllGames();
-        matchList.ItemsSource = games;
-
+        JObject request = new JObject();
+        request["type"] = "GET_GAMES";
+        request["messageId"] = ConnectionManager.GetMessageId();
+        FrontendClient frontendClient  = ConnectionManager.GetClient();
+        try
+        {
+            string requestString = JsonConvert.SerializeObject(request);
+            frontendClient.send(requestString);
+            ConnectionManager.GetDispatcher().AddPendingRequest(request).Task.ContinueWith(response =>
+            {
+                try
+                {
+                    object responseHandled = ConnectionManager.GetResponseParser().HandleResponse(response.Result.ToString());
+                    if (responseHandled is IEnumerable<Game> games)
+                    {
+                        var matchListItemsSource = games as Game[] ?? games.ToArray();
+                        foreach (var VARIABLE in matchListItemsSource)
+                        {
+                            Console.WriteLine(VARIABLE);
+                        }
+                        Dispatcher.UIThread.InvokeAsync(() =>
+                        {
+                            matchList.ItemsSource = matchListItemsSource;
+                        });
+                    }
+                    else
+                    {
+                        Dispatcher.UIThread.InvokeAsync(() =>
+                        {
+                            matchList.ItemsSource = new List<Match>();
+                        });
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
+            });
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
         matchList.SelectionChanged += MatchList_SelectionChanged;
     }
 
@@ -64,25 +108,55 @@ public partial class MainWindow : Window
 
     private void OnLogOut(object? sender, RoutedEventArgs e)
     {
-        var loginPanel = new LoginWindow(_service);
+        EndSession();
+        CloseOpenedScenes();
+        var loginPanel = new LoginWindow();
         loginPanel.Show();
         this.Close();
     }
 
+    private void EndSession() {
+        FrontendClient frontendClient = ConnectionManager.GetClient();
+        JObject jsonObject = new JObject();
+        jsonObject["type"] = "LOGOUT";
+        string jsonNotification = JsonConvert.SerializeObject(jsonObject, Formatting.None);
+        frontendClient.send(jsonNotification);
+        try {
+            frontendClient.Close();
+        } catch (IOException e) {
+            Console.WriteLine(e);
+        }
+    }
+    
     private void OnViewTickets(object? sender, RoutedEventArgs e)
     {
-        var ticketPanel = new TicketWindow(_service);
+        var ticketPanel = new TicketWindow();
+        lock (openedStages)
+        {
+            openedStages.Add(ticketPanel);
+        }
         ticketPanel.Show();
     }
 
+    private void CloseOpenedScenes()
+    {
+        lock (openedStages)
+        {
+            foreach (var window in openedStages)
+            {
+                window.Close();
+            }
+        }
+    }
+    
     private void OnSell(object? sender, RoutedEventArgs e)
     {
         bool canSell = canSellTicket(_selectedGame);
         if (canSell) {
             Ticket ticket = new Ticket(0, _selectedGame, clientName.Text, clientAddress.Text, _loggedCashier,(int) noOfSeats.Value);
-            _service.SaveTicket(ticket);
+            // _service.SaveTicket(ticket);
             _selectedGame.Capacity -= (int) noOfSeats.Value;
-            _service.UpdateGame(_selectedGame);
+            // _service.UpdateGame(_selectedGame);
             InitializeMatches();
             clearClientInfo();
         }

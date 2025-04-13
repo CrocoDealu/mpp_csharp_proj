@@ -5,16 +5,15 @@ using Avalonia.Data.Converters;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 using Avalonia.Threading;
-using ConsoleApp1.dto;
-using ConsoleApp1.model;
-using ConsoleApp1.utils;
+using frontend.model;
+using frontend.utils;
 using frontend.network;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace ConsoleApp1.views;
+namespace frontend.views;
 
-public partial class TicketWindow : Window
+public partial class TicketWindow : Window, Listener
 {
         public TicketWindow()
         {
@@ -26,6 +25,13 @@ public partial class TicketWindow : Window
             nameField = this.Find<TextBox>("nameField");
             addressField = this.Find<TextBox>("addressField");
             LoadTickets();
+            ConnectionManager.GetDispatcher().OnEvent("TICKETS", message =>
+            {
+                Dispatcher.UIThread.Invoke(() =>
+                {
+                    LoadTickets();
+                });
+            });
         }
 
         private void InitializeComponent()
@@ -37,6 +43,24 @@ public partial class TicketWindow : Window
         {
             // var tickets = _service.GetTicketsForClient(null);
             // ticketsTable.ItemsSource = tickets.ToList();
+            string name;
+            if (nameField == null || nameField.Text == null)
+            {
+                name = "";
+            }
+            else
+            {
+                name = nameField.Text;
+            }
+            string address;
+            if (addressField == null || addressField.Text == null)
+            {
+                address = "";
+            }
+            else
+            {
+                address = addressField.Text;
+            }
             JObject request = new JObject();
             request["type"] = "GET_TICKETS";
             request["messageId"] = ConnectionManager.GetMessageId();
@@ -55,11 +79,14 @@ public partial class TicketWindow : Window
                     if (result is IEnumerable<Ticket> tickets)
                     {
                         var ticketListItemsSource = tickets as Ticket[] ?? tickets.ToArray();
-                        return ticketListItemsSource;
+                        Dispatcher.UIThread.Invoke(() =>
+                        {
+                            ticketsTable.ItemsSource = ticketListItemsSource;
+                        });
                     }
                     else
                     {
-                        return List<Ticket>;
+                        ticketsTable.ItemsSource = null;
                     }
                 });
             }
@@ -69,50 +96,17 @@ public partial class TicketWindow : Window
             }
         }
         
-        private List<Ticket> GetTickets()
-        {
-            return new List<Ticket>();
-        }
-        
         private void OnSearchPressed(object sender, RoutedEventArgs e)
         {
-            try
+            if (ticketsTable == null)
             {
-                string name;
-                if (nameField == null || nameField.Text == null)
-                {
-                    name = "";
-                }
-                else
-                {
-                    name = nameField.Text;
-                }
-                string address;
-                if (addressField == null || addressField.Text == null)
-                {
-                    address = "";
-                }
-                else
-                {
-                    address = addressField.Text;
-                }
-                
-                
-                var filteredTickets = SearchTickets(name, address);
-                if (ticketsTable == null)
-                {
-                    ticketsTable = this.Find<ListBox>("ticketsTable");
-                }
-                ticketsTable.ItemsSource = filteredTickets;
+                ticketsTable = this.Find<ListBox>("ticketsTable");
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            LoadTickets();
         }
-        
-        private List<Ticket> SearchTickets(string name, string address)
+
+        public void onUpdate(string message)
         {
-            
+            LoadTickets();
         }
-    }
+}

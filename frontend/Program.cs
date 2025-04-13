@@ -2,7 +2,7 @@
 
 using Avalonia;
 using Avalonia.ReactiveUI;
-using ConsoleApp1.views;
+using frontend.views;
 
 namespace frontend
 {

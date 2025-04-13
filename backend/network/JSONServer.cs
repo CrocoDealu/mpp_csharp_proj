@@ -1,4 +1,4 @@
-using ConsoleApp1.service;
+using backend.service;
 
 namespace backend.network;
 

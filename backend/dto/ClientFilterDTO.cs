@@ -1,4 +1,4 @@
-namespace ConsoleApp1.dto;
+namespace backend.dto;
 
 public class ClientFilterDTO
 {
@@ -7,8 +7,16 @@ public class ClientFilterDTO
 
     public ClientFilterDTO(string clientName, string clientAddress)
     {
-        ClientName = clientName;
-        ClientAddress = clientAddress;
+        if (clientName == "")
+            ClientName = null;
+        else 
+            ClientName = clientName;
+        if (clientAddress == "")
+            ClientAddress = null;
+        else
+        {
+            ClientAddress = clientAddress;
+        }
     }
 
     public override string ToString()

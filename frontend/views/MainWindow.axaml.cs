@@ -4,15 +4,15 @@ using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 using Avalonia.Threading;
-using ConsoleApp1.model;
-using ConsoleApp1.utils;
+using frontend.model;
+using frontend.utils;
 using frontend.network;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace ConsoleApp1.views;
+namespace frontend.views;
 
-public partial class MainWindow : Window
+public partial class MainWindow : Window, Listener
 {
     private Cashier _loggedCashier;
     private Game _selectedGame;
@@ -36,6 +36,13 @@ public partial class MainWindow : Window
         noOfSeats.ShowButtonSpinner = true;
         sellButton.IsEnabled = false;
         InitializeMatches();
+        ConnectionManager.GetDispatcher().OnEvent("GAMES", message =>
+        {
+            Dispatcher.UIThread.Invoke(() =>
+            {
+                InitializeMatches();
+            });
+        });
     }
 
     private void InitializeMatches()
@@ -56,10 +63,6 @@ public partial class MainWindow : Window
                     if (responseHandled is IEnumerable<Game> games)
                     {
                         var matchListItemsSource = games as Game[] ?? games.ToArray();
-                        foreach (var VARIABLE in matchListItemsSource)
-                        {
-                            Console.WriteLine(VARIABLE);
-                        }
                         Dispatcher.UIThread.InvokeAsync(() =>
                         {
                             matchList.ItemsSource = matchListItemsSource;
@@ -153,12 +156,36 @@ public partial class MainWindow : Window
     {
         bool canSell = canSellTicket(_selectedGame);
         if (canSell) {
-            Ticket ticket = new Ticket(0, _selectedGame, clientName.Text, clientAddress.Text, _loggedCashier,(int) noOfSeats.Value);
-            // _service.SaveTicket(ticket);
-            _selectedGame.Capacity -= (int) noOfSeats.Value;
-            // _service.UpdateGame(_selectedGame);
-            InitializeMatches();
-            clearClientInfo();
+            JObject request = new JObject();
+            request["type"] = "SAVE_TICKET";
+            JObject payload = new JObject();
+            payload["gameId"] = _selectedGame.Id;
+            payload["clientName"] = clientName.Text;
+            payload["clientAddress"] = clientAddress.Text;
+            payload["cashierId"] = _loggedCashier.Id;
+            payload["noOfSeats"] = (int) noOfSeats.Value;
+            request["payload"] = payload;
+            request["messageId"] = ConnectionManager.GetMessageId();
+            FrontendClient frontendClient = ConnectionManager.GetClient();
+            try
+            {
+                string requestString = JsonConvert.SerializeObject(request, Formatting.None);
+                frontendClient.send(requestString);
+                ConnectionManager.GetDispatcher().AddPendingRequest(request).Task.ContinueWith(response =>
+                {
+                    if (response.Result.ContainsKey("payload"))
+                    {
+                        Dispatcher.UIThread.Invoke(() =>
+                        {
+                            clearClientInfo();
+                        });
+                    }
+                });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
         }
     }
 
@@ -199,5 +226,14 @@ public partial class MainWindow : Window
             }
         }
         return false;
+    }
+
+
+    public void onUpdate(string message)
+    {
+        if (message.Equals("GAMES"))
+        {
+            InitializeMatches();
+        }
     }
 }

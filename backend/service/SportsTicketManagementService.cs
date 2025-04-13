@@ -1,10 +1,10 @@
+using backend.dto;
+using backend.model;
 using backend.network;
-using ConsoleApp1.dto;
-using ConsoleApp1.model;
-using ConsoleApp1.repository;
+using backend.repository;
 using Newtonsoft.Json.Linq;
 
-namespace ConsoleApp1.service;
+namespace backend.service;
 
 public class SportsTicketManagementService
 {

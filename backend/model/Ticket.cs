@@ -1,4 +1,4 @@
-namespace ConsoleApp1.model;
+namespace backend.model;
 
 public class Ticket: Entity<int>
 {

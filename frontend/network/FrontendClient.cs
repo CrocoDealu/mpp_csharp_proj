@@ -1,6 +1,6 @@
 using System.Net.Sockets;
 using Avalonia.Threading;
-using ConsoleApp1.utils;
+using frontend.utils;
 using Newtonsoft.Json.Linq;
 
 namespace frontend.network;

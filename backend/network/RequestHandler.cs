@@ -1,6 +1,6 @@
-using ConsoleApp1.dto;
-using ConsoleApp1.model;
-using ConsoleApp1.service;
+using backend.dto;
+using backend.model;
+using backend.service;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
@@ -21,7 +21,6 @@ public class RequestHandler
         try
         {
             var request = JObject.Parse(requestString);
-            
             var response = new JObject();
 
             if (request.ContainsKey("messageId"))

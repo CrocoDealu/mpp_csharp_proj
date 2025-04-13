@@ -1,5 +1,5 @@
 using System.Collections.Concurrent;
-using ConsoleApp1.utils;
+using frontend.utils;
 using Newtonsoft.Json.Linq;
 
 namespace frontend.network;
@@ -28,7 +28,7 @@ public class JSONDispatcher
 
     private void NotifyListeners(JObject message)
     {
-        string? eventType = message["eventType"]!.ToObject<string>();
+        string? eventType = message["type"]!.ToObject<string>();
         if (!_eventListeners.ContainsKey(eventType))
         {
             return;

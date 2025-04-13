@@ -2,7 +2,7 @@ using System.Globalization;
 using Avalonia.Data.Converters;
 using Avalonia.Media;
 
-namespace ConsoleApp1.utils;
+namespace frontend.utils;
 
 public class CapacityColorConverter : IValueConverter
 {

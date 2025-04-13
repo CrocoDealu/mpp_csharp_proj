@@ -1,6 +1,6 @@
-using ConsoleApp1.model;
+using backend.model;
 
-namespace ConsoleApp1.repository;
+namespace backend.repository;
 
 public interface IGameRepository: IRepository<int, Game>
 {

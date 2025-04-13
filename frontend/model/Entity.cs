@@ -1,4 +1,4 @@
-namespace ConsoleApp1.model;
+namespace frontend.model;
 
 public class Entity<TId>
 {

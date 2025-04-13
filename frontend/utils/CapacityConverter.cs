@@ -1,7 +1,7 @@
 using System.Globalization;
 using Avalonia.Data.Converters;
 
-namespace ConsoleApp1.utils;
+namespace frontend.utils;
 
 public class CapacityConverter : IValueConverter
 {

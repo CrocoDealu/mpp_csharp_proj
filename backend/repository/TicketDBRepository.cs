@@ -1,13 +1,13 @@
 using System.Data;
 using System.Reflection;
 using System.Text;
-using ConsoleApp1.dto;
-using ConsoleApp1.model;
-using ConsoleApp1.utils;
+using backend.dto;
+using backend.model;
+using backend.utils;
 using log4net;
 using Microsoft.Data.Sqlite;
 
-namespace ConsoleApp1.repository;
+namespace backend.repository;
 
 public class TicketDBRepository : ITicketRepository
 {

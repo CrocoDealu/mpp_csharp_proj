@@ -1,6 +1,6 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        x:Class="ConsoleApp1.views.MainWindow"
+        x:Class="frontend.views.MainWindow"
         Title="Main Panel"
         Width="700" Height="413">
 

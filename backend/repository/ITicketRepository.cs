@@ -1,7 +1,7 @@
-using ConsoleApp1.dto;
-using ConsoleApp1.model;
+using backend.dto;
+using backend.model;
 
-namespace ConsoleApp1.repository;
+namespace backend.repository;
 
 public interface ITicketRepository: IRepository<int, Ticket>
 {

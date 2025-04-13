@@ -3,7 +3,7 @@ using System.Reflection;
 using log4net;
 using Microsoft.Data.Sqlite;
 
-namespace ConsoleApp1.utils;
+namespace backend.utils;
 public class DbUtils
 {
     private readonly string _connectionString;

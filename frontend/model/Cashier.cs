@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace ConsoleApp1.model;
+namespace frontend.model;
 
 public class Cashier: Entity<int>
 {

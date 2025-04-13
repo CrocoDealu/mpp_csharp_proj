@@ -1,4 +1,4 @@
-namespace ConsoleApp1.dto;
+namespace frontend.model;
 
 public class ClientFilterDTO
 {

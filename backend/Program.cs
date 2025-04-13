@@ -2,9 +2,9 @@
 
 using System.Reflection;
 using backend.network;
-using ConsoleApp1.repository;
-using ConsoleApp1.service;
-using ConsoleApp1.utils;
+using backend.repository;
+using backend.service;
+using backend.utils;
 using log4net;
 using log4net.Config;
 using Microsoft.Extensions.Configuration;

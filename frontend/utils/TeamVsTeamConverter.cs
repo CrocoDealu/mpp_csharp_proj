@@ -1,8 +1,8 @@
 using System.Globalization;
 using Avalonia.Data.Converters;
-using ConsoleApp1.model;
+using frontend.model;
 
-namespace ConsoleApp1.utils;
+namespace frontend.utils;
 
 public class TeamVsTeamConverter : IValueConverter
 {

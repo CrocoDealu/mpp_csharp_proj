@@ -4,9 +4,9 @@ using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
-using ConsoleApp1.utils;
+using frontend.utils;
 
-namespace ConsoleApp1.views;
+namespace frontend.views;
 
 public partial class App : Application
 {

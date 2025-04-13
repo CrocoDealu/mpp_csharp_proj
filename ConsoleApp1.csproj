@@ -31,13 +31,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <UpToDateCheckInput Remove="views\App.axaml" />
-      <UpToDateCheckInput Remove="views\LoginWindow.axaml" />
-      <UpToDateCheckInput Remove="views\MainWindow.axaml" />
-      <UpToDateCheckInput Remove="views\TicketWindow.axaml" />
-    </ItemGroup>
-
-    <ItemGroup>
       <AdditionalFiles Include="frontend\views\App.axaml" />
       <AdditionalFiles Include="frontend\views\LoginWindow.axaml" />
       <AdditionalFiles Include="frontend\views\MainWindow.axaml" />

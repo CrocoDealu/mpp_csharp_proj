@@ -1,13 +1,13 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
-using ConsoleApp1.model;
+using frontend.model;
 using frontend.network;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Avalonia.Threading;
 
-namespace ConsoleApp1.views;
+namespace frontend.views;
 
 
 public partial class LoginWindow : Window

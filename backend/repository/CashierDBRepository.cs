@@ -1,12 +1,12 @@
 using System.Data;
 using System.Reflection;
-using ConsoleApp1.model;
-using ConsoleApp1.utils;
+using backend.model;
+using backend.utils;
 using log4net;
 using Microsoft.Data.Sqlite;
 using Microsoft.Extensions.Configuration;
 
-namespace ConsoleApp1.repository;
+namespace backend.repository;
 
 public class CashierDBRepository: ICashierRepository
 {

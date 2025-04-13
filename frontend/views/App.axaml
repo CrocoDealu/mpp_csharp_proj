@@ -1,6 +1,6 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             x:Class="ConsoleApp1.views.App">
+             x:Class="frontend.views.App">
     <Application.Styles>
         <FluentTheme/>
         <Style Selector="TextBox.error">

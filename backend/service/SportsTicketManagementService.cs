@@ -6,7 +6,7 @@ using Newtonsoft.Json.Linq;
 
 namespace backend.service;
 
-public class SportsTicketManagementService
+public class SportsTicketManagementService: IService<BackendClient>
 {
     private ICashierRepository cashierRepository;
     private IGameRepository gameRepository;

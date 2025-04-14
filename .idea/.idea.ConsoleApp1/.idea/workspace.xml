@@ -10,21 +10,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="72b6b256-3bc6-4cc6-9b77-74a2aa0da831" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.ConsoleApp1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ConsoleApp1/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/service/IService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/bin/Debug/net9.0/backend.dll" beforeDir="false" afterPath="$PROJECT_DIR$/backend/bin/Debug/net9.0/backend.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/bin/Debug/net9.0/backend.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/backend/bin/Debug/net9.0/backend.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/obj/Debug/net9.0/backend.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/backend/obj/Debug/net9.0/backend.AssemblyInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/obj/Debug/net9.0/backend.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/backend/obj/Debug/net9.0/backend.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/obj/Debug/net9.0/backend.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/backend/obj/Debug/net9.0/backend.csproj.CoreCompileInputs.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/obj/Debug/net9.0/backend.dll" beforeDir="false" afterPath="$PROJECT_DIR$/backend/obj/Debug/net9.0/backend.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/obj/Debug/net9.0/backend.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/backend/obj/Debug/net9.0/backend.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/obj/Debug/net9.0/backend.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/obj/Debug/net9.0/backend.sourcelink.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/obj/Debug/net9.0/ref/backend.dll" beforeDir="false" afterPath="$PROJECT_DIR$/backend/obj/Debug/net9.0/ref/backend.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/obj/Debug/net9.0/refint/backend.dll" beforeDir="false" afterPath="$PROJECT_DIR$/backend/obj/Debug/net9.0/refint/backend.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/backend/obj/rider.project.model.nuget.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/backend/obj/rider.project.restore.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/service/SportsTicketManagementService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/backend/service/SportsTicketManagementService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/bin/Debug/net9.0/frontend.dll" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/bin/Debug/net9.0/frontend.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/bin/Debug/net9.0/frontend.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/bin/Debug/net9.0/frontend.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/obj/Debug/net9.0/Avalonia/Resources.Inputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/obj/Debug/net9.0/Avalonia/Resources.Inputs.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/obj/Debug/net9.0/frontend.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/obj/Debug/net9.0/frontend.AssemblyInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/obj/Debug/net9.0/frontend.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/obj/Debug/net9.0/frontend.AssemblyInfoInputs.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/obj/Debug/net9.0/frontend.dll" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/obj/Debug/net9.0/frontend.dll" afterDir="false" />
@@ -32,8 +31,6 @@
       <change beforePath="$PROJECT_DIR$/frontend/obj/Debug/net9.0/frontend.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/obj/Debug/net9.0/frontend.sourcelink.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/obj/Debug/net9.0/ref/frontend.dll" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/obj/Debug/net9.0/ref/frontend.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/obj/Debug/net9.0/refint/frontend.dll" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/obj/Debug/net9.0/refint/frontend.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/obj/rider.project.model.nuget.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/obj/rider.project.restore.info" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -180,6 +177,7 @@
       <workItem from="1744542103834" duration="1899000" />
       <workItem from="1744544101359" duration="48000" />
       <workItem from="1744544296353" duration="21000" />
+      <workItem from="1744620926338" duration="343000" />
     </task>
     <servers />
   </component>
